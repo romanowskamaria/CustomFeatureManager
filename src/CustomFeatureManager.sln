@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30114.105
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomFeatureManager.WebApi", "CustomFeatureManager.WebApi\CustomFeatureManager.WebApi.csproj", "{2CB68BB9-19CE-4BCD-B94B-56C59F0CBA5C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomFeatureManager.Infrastructure", "CustomFeatureManager.Infrastructure\CustomFeatureManager.Infrastructure.csproj", "{68414C3E-68D1-4C83-8E99-BD422B3CA1C5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomFeatureManager.Application", "CustomFeatureManager.Application\CustomFeatureManager.Application.csproj", "{AA9B57ED-2022-4AFE-91C9-20B8BDFF9663}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2CB68BB9-19CE-4BCD-B94B-56C59F0CBA5C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2CB68BB9-19CE-4BCD-B94B-56C59F0CBA5C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2CB68BB9-19CE-4BCD-B94B-56C59F0CBA5C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2CB68BB9-19CE-4BCD-B94B-56C59F0CBA5C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{68414C3E-68D1-4C83-8E99-BD422B3CA1C5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{68414C3E-68D1-4C83-8E99-BD422B3CA1C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{68414C3E-68D1-4C83-8E99-BD422B3CA1C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{68414C3E-68D1-4C83-8E99-BD422B3CA1C5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AA9B57ED-2022-4AFE-91C9-20B8BDFF9663}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AA9B57ED-2022-4AFE-91C9-20B8BDFF9663}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AA9B57ED-2022-4AFE-91C9-20B8BDFF9663}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AA9B57ED-2022-4AFE-91C9-20B8BDFF9663}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
