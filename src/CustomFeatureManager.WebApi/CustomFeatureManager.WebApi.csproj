@@ -5,12 +5,12 @@
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
         <AppSettingsPath>appsettings.json</AppSettingsPath>
-<!--        <isFeature_3_Permanent Condition="$([System.IO.File]::ReadAllText('$(AppSettingsPath)').Contains('%22Feature3%22')) == 'false'">true</isFeature_3_Permanent>-->
+        <isFeature_3_Permanent Condition="$([System.IO.File]::ReadAllText('$(AppSettingsPath)').Contains('%22Feature3%22')) == 'false'">true</isFeature_3_Permanent>
     </PropertyGroup>
     
-<!--    <PropertyGroup Condition="'$(isFeature_3_Permanent)'=='true'">-->
-<!--        <DefineConstants>$(DefineConstants);Feature3Permanent</DefineConstants>-->
-<!--    </PropertyGroup>-->
+    <PropertyGroup Condition="'$(isFeature_3_Permanent)'=='true'">
+        <DefineConstants>$(DefineConstants);Feature3Permanent</DefineConstants>
+    </PropertyGroup>
     
     <Target Name="FeatureFlag" BeforeTargets="BuildCompile">
         <PropertyGroup>
