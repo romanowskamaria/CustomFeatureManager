@@ -1,8 +1,8 @@
 namespace CustomFeatureManager.WebApi.Controllers;
 
 using CustomFeatureManager.Application.Common.Constants;
+using CustomFeatureManager.Application.FeatureManagement;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.FeatureManagement;
 
 [ApiController]
 [Route("[controller]/[action]")]
@@ -24,9 +24,9 @@ public class WeatherForecastController : ControllerBase
     }
 
     [HttpGet(Name = "Features")]
-    public IActionResult Features()
+    public async Task<IActionResult> Features()
     {
-        var features = featureManager.GetFeatureNamesAsync();
+        var features = await this.featureManager.GetFeaturesAsync();
         return Ok(features);
     }
 
@@ -37,13 +37,13 @@ public class WeatherForecastController : ControllerBase
         var isFeatureEnabled = true;
         logger.LogInformation("Feature1Permanent true");
 #else
-        var isFeatureEnabled = await featureManager.IsEnabledAsync(FeatureCodes.FEATURE1);
-        logger.LogInformation("Feature1Permanent false");
+        var isFeatureEnabled = await this.featureManager.IsEnabledAsync(FeatureCodes.FEATURE1);
+        this.logger.LogInformation("Feature1Permanent false");
 #endif
 
         if (isFeatureEnabled)
         {
-            logger.LogInformation("Feature1 enabled");
+            this.logger.LogInformation("Feature1 enabled");
             return Ok(Enumerable.Range(1, 5).Select(index => new WeatherForecast
                 {
                     Date = DateTime.Now.AddDays(index),
@@ -53,7 +53,7 @@ public class WeatherForecastController : ControllerBase
                 .ToArray());
         }
 
-        logger.LogInformation("Feature1 disabled");
+        this.logger.LogInformation("Feature1 disabled");
         return await Task.FromResult(BadRequest("Feature1 disabled"));
     }
 
@@ -64,13 +64,13 @@ public class WeatherForecastController : ControllerBase
         var isFeatureEnabled = true;
         logger.LogInformation("Feature2Permanent true");
 #else
-        var isFeatureEnabled = await featureManager.IsEnabledAsync(FeatureCodes.FEATURE2);
-        logger.LogInformation("Feature2Permanent false");
+        var isFeatureEnabled = await this.featureManager.IsEnabledAsync(FeatureCodes.FEATURE2);
+        this.logger.LogInformation("Feature2Permanent false");
 #endif
 
         if (isFeatureEnabled)
         {
-            logger.LogInformation("Feature2 enabled");
+            this.logger.LogInformation("Feature2 enabled");
             return Ok(Enumerable.Range(1, 5).Select(index => new WeatherForecast
                 {
                     Date = DateTime.Now.AddDays(index),
@@ -80,7 +80,7 @@ public class WeatherForecastController : ControllerBase
                 .ToArray());
         }
 
-        logger.LogInformation("Feature2 disabled");
+        this.logger.LogInformation("Feature2 disabled");
         return await Task.FromResult(BadRequest("Feature2 disabled"));
     }
 
@@ -91,13 +91,13 @@ public class WeatherForecastController : ControllerBase
         var isFeatureEnabled = true;
         logger.LogInformation("Feature3Permanent true");
 #else
-        var isFeatureEnabled = await featureManager.IsEnabledAsync(FeatureCodes.FEATURE3);
-        logger.LogInformation("Feature3Permanent false");
+        var isFeatureEnabled = await this.featureManager.IsEnabledAsync(FeatureCodes.FEATURE3);
+        this.logger.LogInformation("Feature3Permanent false");
 #endif
 
         if (isFeatureEnabled)
         {
-            logger.LogInformation("Feature3 enabled");
+            this.logger.LogInformation("Feature3 enabled");
             return Ok(Enumerable.Range(1, 5).Select(index => new WeatherForecast
                 {
                     Date = DateTime.Now.AddDays(index),
@@ -107,7 +107,7 @@ public class WeatherForecastController : ControllerBase
                 .ToArray());
         }
 
-        logger.LogInformation("Feature3 disabled");
+        this.logger.LogInformation("Feature3 disabled");
         return await Task.FromResult(BadRequest("Feature3 disabled"));
     }
 
@@ -116,7 +116,7 @@ public class WeatherForecastController : ControllerBase
     {
 #if Feature4Permanent
         var isFeatureEnabled = true;
-        logger.LogInformation("Feature4Permanent true");
+        this.logger.LogInformation("Feature4Permanent true");
 #else
         var isFeatureEnabled = await featureManager.IsEnabledAsync(FeatureCodes.FEATURE4);
         logger.LogInformation("Feature4Permanent false");
@@ -124,7 +124,7 @@ public class WeatherForecastController : ControllerBase
 
         if (isFeatureEnabled)
         {
-            logger.LogInformation("Feature4 enabled");
+            this.logger.LogInformation("Feature4 enabled");
             return Ok(Enumerable.Range(1, 5).Select(index => new WeatherForecast
                 {
                     Date = DateTime.Now.AddDays(index),
@@ -134,7 +134,7 @@ public class WeatherForecastController : ControllerBase
                 .ToArray());
         }
 
-        logger.LogInformation("Feature4 disabled");
+        this.logger.LogInformation("Feature4 disabled");
         return await Task.FromResult(BadRequest("Feature4 disabled"));
     }
 
@@ -143,7 +143,7 @@ public class WeatherForecastController : ControllerBase
     {
 #if Feature5Permanent
         var isFeatureEnabled = true;
-        logger.LogInformation("Feature5Permanent true");
+        this.logger.LogInformation("Feature5Permanent true");
 #else
         var isFeatureEnabled = await featureManager.IsEnabledAsync(FeatureCodes.FEATURE5);
         logger.LogInformation("Feature5Permanent false");
@@ -151,7 +151,7 @@ public class WeatherForecastController : ControllerBase
 
         if (isFeatureEnabled)
         {
-            logger.LogInformation("Feature5 enabled");
+            this.logger.LogInformation("Feature5 enabled");
             return Ok(Enumerable.Range(1, 5).Select(index => new WeatherForecast
                 {
                     Date = DateTime.Now.AddDays(index),
@@ -161,7 +161,7 @@ public class WeatherForecastController : ControllerBase
                 .ToArray());
         }
 
-        logger.LogInformation("Feature5 disabled");
+        this.logger.LogInformation("Feature5 disabled");
         return await Task.FromResult(BadRequest("Feature5 disabled"));
     }
 }
