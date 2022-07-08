@@ -1,8 +1,8 @@
 namespace CustomFeatureManager.WebApi.Controllers;
 
 using CustomFeatureManager.Application.Common.Constants;
-using CustomFeatureManager.Application.FeatureManagement;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.FeatureManagement;
 
 [ApiController]
 [Route("[controller]/[action]")]
@@ -24,9 +24,9 @@ public class WeatherForecastController : ControllerBase
     }
 
     [HttpGet(Name = "Features")]
-    public async Task<IActionResult> Features()
+    public IActionResult Features()
     {
-        var features = await featureManager.GetFeaturesAsync();
+        var features = featureManager.GetFeatureNamesAsync();
         return Ok(features);
     }
 
@@ -34,10 +34,11 @@ public class WeatherForecastController : ControllerBase
     public async Task<IActionResult> Feature1()
     {
 #if Feature1Permanent
-        var isFeatureEnabled = false;
-        throw new Exception();
+        var isFeatureEnabled = true;
+        logger.LogInformation("Feature1Permanent true");
 #else
         var isFeatureEnabled = await featureManager.IsEnabledAsync(FeatureCodes.FEATURE1);
+        logger.LogInformation("Feature1Permanent false");
 #endif
 
         if (isFeatureEnabled)
@@ -60,10 +61,11 @@ public class WeatherForecastController : ControllerBase
     public async Task<IActionResult> Feature2()
     {
 #if Feature2Permanent
-        var isFeatureEnabled = false;
-        throw new Exception();
+        var isFeatureEnabled = true;
+        logger.LogInformation("Feature2Permanent true");
 #else
         var isFeatureEnabled = await featureManager.IsEnabledAsync(FeatureCodes.FEATURE2);
+        logger.LogInformation("Feature2Permanent false");
 #endif
 
         if (isFeatureEnabled)
@@ -86,9 +88,11 @@ public class WeatherForecastController : ControllerBase
     public async Task<IActionResult> Feature3()
     {
 #if Feature3Permanent
-        var isFeatureEnabled = false;
-#else
         var isFeatureEnabled = true;
+        logger.LogInformation("Feature3Permanent true");
+#else
+        var isFeatureEnabled = await featureManager.IsEnabledAsync(FeatureCodes.FEATURE3);
+        logger.LogInformation("Feature3Permanent false");
 #endif
 
         if (isFeatureEnabled)
@@ -111,10 +115,11 @@ public class WeatherForecastController : ControllerBase
     public async Task<IActionResult> Feature4()
     {
 #if Feature4Permanent
-        var isFeatureEnabled = false;
-        throw new Exception();
+        var isFeatureEnabled = true;
+        logger.LogInformation("Feature4Permanent true");
 #else
         var isFeatureEnabled = await featureManager.IsEnabledAsync(FeatureCodes.FEATURE4);
+        logger.LogInformation("Feature4Permanent false");
 #endif
 
         if (isFeatureEnabled)
@@ -137,10 +142,11 @@ public class WeatherForecastController : ControllerBase
     public async Task<IActionResult> Feature5()
     {
 #if Feature5Permanent
-        var isFeatureEnabled = false;
-        throw new Exception();
+        var isFeatureEnabled = true;
+        logger.LogInformation("Feature5Permanent true");
 #else
         var isFeatureEnabled = await featureManager.IsEnabledAsync(FeatureCodes.FEATURE5);
+        logger.LogInformation("Feature5Permanent false");
 #endif
 
         if (isFeatureEnabled)

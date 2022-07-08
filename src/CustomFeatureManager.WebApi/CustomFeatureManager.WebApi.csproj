@@ -1,69 +1,40 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+<Project InitialTargets="FeatureFlag" Sdk="Microsoft.NET.Sdk.Web">
 
     <PropertyGroup>
         <TargetFramework>net6.0</TargetFramework>
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
         <AppSettingsPath>appsettings.json</AppSettingsPath>
-        <isFeature_3_Permanent Condition="$([System.IO.File]::ReadAllText('$(AppSettingsPath)').Contains('%22Feature3%22')) == 'false'">true</isFeature_3_Permanent>
     </PropertyGroup>
-    
-    <PropertyGroup Condition="'$(isFeature_3_Permanent)'=='true'">
-        <DefineConstants>$(DefineConstants);Feature3Permanent</DefineConstants>
-    </PropertyGroup>
-    
-    <Target Name="FeatureFlag" BeforeTargets="BuildCompile">
+
+    <Target Name="FeatureFlag">
         <PropertyGroup>
             <isFeature_1_Permanent Condition="$([System.IO.File]::ReadAllText('$(AppSettingsPath)').Contains('%22Feature1%22')) == 'false'">true</isFeature_1_Permanent>
-        </PropertyGroup>
-        <PropertyGroup>
             <isFeature_2_Permanent Condition="$([System.IO.File]::ReadAllText('$(AppSettingsPath)').Contains('%22Feature2%22')) == 'false'">true</isFeature_2_Permanent>
-        </PropertyGroup>
-        <PropertyGroup>
             <isFeature_3_Permanent Condition="$([System.IO.File]::ReadAllText('$(AppSettingsPath)').Contains('%22Feature3%22')) == 'false'">true</isFeature_3_Permanent>
-        </PropertyGroup>
-        <PropertyGroup>
             <isFeature_4_Permanent Condition="$([System.IO.File]::ReadAllText('$(AppSettingsPath)').Contains('%22Feature4%22')) == 'false'">true</isFeature_4_Permanent>
-        </PropertyGroup>
-        <PropertyGroup>
             <isFeature_5_Permanent Condition="$([System.IO.File]::ReadAllText('$(AppSettingsPath)').Contains('%22Feature5%22')) == 'false'">true</isFeature_5_Permanent>
         </PropertyGroup>
-
-        <Message Importance="High" Text="isFeature_1_Permanent = $(isFeature_1_Permanent)"/>
-        <Message Importance="High" Text="DefineConstants = $(DefineConstants)"/>
 
         <PropertyGroup Condition="'$(isFeature_1_Permanent)'=='true'">
             <DefineConstants>$(DefineConstants);Feature1Permanent</DefineConstants>
         </PropertyGroup>
 
-        <Message Importance="High" Text="isFeature_2_Permanent = $(isFeature_2_Permanent)"/>
-        <Message Importance="High" Text="DefineConstants = $(DefineConstants)"/>
-
         <PropertyGroup Condition="'$(isFeature_2_Permanent)'=='true'">
             <DefineConstants>$(DefineConstants);Feature2Permanent</DefineConstants>
         </PropertyGroup>
-
-        <Message Importance="High" Text="isFeature_3_Permanent = $(isFeature_3_Permanent)"/>
-        <Message Importance="High" Text="DefineConstants = $(DefineConstants)"/>
 
         <PropertyGroup Condition="'$(isFeature_3_Permanent)'=='true'">
             <DefineConstants>$(DefineConstants);Feature3Permanent</DefineConstants>
         </PropertyGroup>
 
-        <Message Importance="High" Text="isFeature_4_Permanent = $(isFeature_4_Permanent)"/>
-        <Message Importance="High" Text="DefineConstants = $(DefineConstants)"/>
-
         <PropertyGroup Condition="'$(isFeature_4_Permanent)'=='true'">
             <DefineConstants>$(DefineConstants);Feature4Permanent</DefineConstants>
         </PropertyGroup>
 
-        <Message Importance="High" Text="isFeature_5_Permanent = $(isFeature_5_Permanent)"/>
-        <Message Importance="High" Text="DefineConstants = $(DefineConstants)"/>
-
-        <PropertyGroup>
+        <PropertyGroup Condition="'$(isFeature_5_Permanent)'=='true'">
             <DefineConstants>$(DefineConstants);Feature5Permanent</DefineConstants>
         </PropertyGroup>
-        <Message Importance="High" Text="DefineConstants = $(DefineConstants)"/>
     </Target>
 
     <ItemGroup>
